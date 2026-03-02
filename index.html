@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissão de Emergência - Hospital</title>
+    <!-- Foco e Atenção: Sem menu de navegação global para evitar distrações. O recepcionista foca apenas no formulário. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main class="admission-container">
+        <header class="form-header">
+            <h1>Admissão de Emergência</h1>
+            <p>Preencha os dados primários rapidamente para triagem.</p>
+        </header>
+
+        <form id="emergency-form" aria-labelledby="form-title" novalidate>
+            
+            <!-- Gestalt e Percepção: Agrupamento por proximidade e similaridade usando fieldsets visuais -->
+            <fieldset class="form-group">
+                <legend>Dados Pessoais</legend>
+                
+                <div class="input-row">
+                    <!-- Redução da Carga Cognitiva: Labels claros e consistentes. -->
+                    <div class="input-control full-width">
+                        <label for="nome">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Ex: Maria da Silva">
+                        <div class="error-message" aria-live="polite">
+                            <!-- Visual Redundancy (Uso eficiente de cores/acessibilidade): Ícone + Texto + Cor -->
+                            <svg class="error-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 15A7 7 0 108 1a7 7 0 000 14zM7 4h2v5H7V4zm0 6h2v2H7v-2z" fill="currentColor"/></svg>
+                            <span class="error-text">O nome é obrigatório.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-control">
+                        <label for="cpf">CPF *</label>
+                        <!-- Memória e Chunking: O input será mascarado via JS para não forçar a memória de curto prazo -->
+                        <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00" maxlength="14">
+                        <div class="error-message" aria-live="polite">
+                            <svg class="error-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 15A7 7 0 108 1a7 7 0 000 14zM7 4h2v5H7V4zm0 6h2v2H7v-2z" fill="currentColor"/></svg>
+                            <span class="error-text">CPF inválido.</span>
+                        </div>
+                    </div>
+                    <div class="input-control">
+                        <label for="idade">Idade *</label>
+                        <input type="number" id="idade" name="idade" required placeholder="Anos" min="0" max="130">
+                        <div class="error-message" aria-live="polite">
+                             <svg class="error-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 15A7 7 0 108 1a7 7 0 000 14zM7 4h2v5H7V4zm0 6h2v2H7v-2z" fill="currentColor"/></svg>
+                            <span class="error-text">Idade inválida.</span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <legend>Contato de Emergência</legend>
+                <div class="input-row">
+                    <div class="input-control">
+                        <label for="nome-contato">Nome do Contato</label>
+                        <input type="text" id="nome-contato" name="nome-contato" placeholder="Ex: José da Silva">
+                    </div>
+                    <div class="input-control">
+                        <label for="telefone-contato">Telefone (Celular) *</label>
+                        <!-- Memória e Chunking: Máscara no telefone para facilitar leitura rápida -->
+                        <input type="tel" id="telefone-contato" name="telefone-contato" required placeholder="(00) 00000-0000" maxlength="15">
+                        <div class="error-message" aria-live="polite">
+                             <svg class="error-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 15A7 7 0 108 1a7 7 0 000 14zM7 4h2v5H7V4zm0 6h2v2H7v-2z" fill="currentColor"/></svg>
+                            <span class="error-text">Telefone inválido.</span>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <legend>Condição Médica Rápida</legend>
+                <div class="input-control full-width">
+                    <label for="sintomas">Sintomas Iniciais *</label>
+                    <textarea id="sintomas" name="sintomas" required rows="3" placeholder="Descreva brevemente o motivo da emergência..."></textarea>
+                    <div class="error-message" aria-live="polite">
+                         <svg class="error-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 15A7 7 0 108 1a7 7 0 000 14zM7 4h2v5H7V4zm0 6h2v2H7v-2z" fill="currentColor"/></svg>
+                        <span class="error-text">Informe os sintomas.</span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Progressive Disclosure: Informações secundárias ficam ocultas, reduzindo a carga cognitiva inicial se for caso grave. -->
+            <div class="progressive-disclosure">
+                <button type="button" id="btn-toggle-extra" class="btn-secondary" aria-expanded="false">
+                    + Adicionar Histórico (Alergias / Medicação) - Não Urgente
+                </button>
+                <div id="extra-info-panel" class="hidden-panel" hidden>
+                    <div class="input-control full-width">
+                        <label for="alergias">Alergias Conhecidas</label>
+                        <input type="text" id="alergias" name="alergias" placeholder="Ex: Penicilina, Iodo (Opcional)">
+                    </div>
+                    <div class="input-control full-width">
+                        <label for="medicacoes">Medicações em Uso</label>
+                        <input type="text" id="medicacoes" name="medicacoes" placeholder="Ex: Losartana 50mg (Opcional)">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <!-- Uso Eficiente de Cores e Contraste: Apenas a Ação Primária em destaque forte -->
+                <button type="submit" class="btn-primary">Confirmar Admissão</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

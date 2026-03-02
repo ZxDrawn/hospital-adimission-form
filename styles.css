@@ -1,0 +1,220 @@
+/* 
+  Estilo global
+  Gestalt (Figura e Fundo): Fundo escuro/cinza claro e formulário branco 
+  para dar foco e isolar a área de trabalho.
+*/
+:root {
+    --bg-color: #f3f4f6;
+    --form-bg: #ffffff;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --border-color: #d1d5db;
+    --border-focus: #3b82f6;
+    /* Uso Eficiente de Cores: Ação Primária Contrastante */
+    --primary-color: #2563eb; 
+    --primary-hover: #1d4ed8;
+    --secondary-bg: #f3f4f6;
+    --secondary-hover: #e5e7eb;
+    /* Cor de erro para redundância visual */
+    --error-color: #dc2626; 
+    --error-bg: #fef2f2;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
+}
+
+/* Foco e Atenção: Container isolado e limpo */
+.admission-container {
+    background-color: var(--form-bg);
+    width: 100%;
+    max-width: 700px;
+    padding: 32px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.form-header {
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 16px;
+}
+
+.form-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* Gestalt (Agrupamento/Proximidade): Fieldsets claramente delimitados */
+.form-group {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+    background-color: #fafafa;
+}
+
+.form-group legend {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--primary-color);
+    background-color: var(--form-bg);
+    padding: 0 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.input-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.input-row:last-child {
+    margin-bottom: 0;
+}
+
+.input-control {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-control.full-width {
+    width: 100%;
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease-in-out;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Redundância Visual para Erros: Cor + Borda + Mensagem Clara.
+   Daltônicos não dependem apenas da cor para perceber o erro. */
+.input-control.error input,
+.input-control.error textarea {
+    border-color: var(--error-color);
+    background-color: var(--error-bg);
+}
+
+.error-message {
+    display: none;
+    color: var(--error-color);
+    font-size: 12px;
+    margin-top: 6px;
+    align-items: center;
+    gap: 4px;
+    font-weight: 500;
+}
+
+.input-control.error .error-message {
+    display: flex;
+}
+
+/* Progressive Disclosure */
+.progressive-disclosure {
+    margin-bottom: 24px;
+}
+
+.hidden-panel {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    border-left: 3px solid var(--border-color);
+    background-color: #fefefe;
+}
+
+.hidden-panel:not([hidden]) {
+    animation: fadeInDown 0.3s ease forwards;
+}
+
+/* Botões */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-hover);
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .input-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+/* Animações */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

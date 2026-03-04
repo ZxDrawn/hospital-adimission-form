@@ -22,10 +22,3 @@ Dentre as técnicas exigidas, a aplicação correta de **Memória e Chunking** e
 Porque uma interface de emergência precisa ser passiva com o usuário, até ele testar limites, mas reagir de forma assertiva. Desenvolver o script de mascara (`script.js`) para capturar os dígitos e transformá-los dinamicamente em blocos visuais (`(11) 9....`) tira a fricção da "lembrança de curto prazo", mas exige que a validação de erro perceba o dado bruto (números) que o usuário tentou inserir caso ele não chegue até o final.
 
 Garantir que os estados de erro se mostrassem apenas ao submeter (*prevent default*), alterando cor do fundo, borda, texto descritivo em vermelho e **especialmente inserindo um ícone interpretável**, necessitou não de um atributo padrão nativo de HTML (`required`), mas de controle customizável via JavaScript e regras CSS específicas para sobrepor o comportamento do navegador (que usa balões nativos muitas vezes não muito acessíveis). Alcançar um estado visual no qual um daltônico entenderia imediatamente o erro de um CPF incompleto requer uma união forte de CSS contextual.
-
----
-
-## 🛠️ Como rodar o projeto
-
-1. Faça o clone deste repositório
-2. Abra o arquivo `index.html` em qualquer navegador web moderno. Não é necessário transpilação cruzada ou instalação via NPM, o projeto roda vanilla (puro HTML, JS, CSS).
